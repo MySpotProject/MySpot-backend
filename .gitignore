@@ -32,3 +32,5 @@
 .env
 
 client
+
+.byebug_history
