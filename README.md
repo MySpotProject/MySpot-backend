@@ -25,4 +25,15 @@ Things you may want to cover:
 
 # How to run Docker API
 
-* 
+* Запустить один раз
+```
+docker-compose run --build --rm web bash
+rails db:create
+rails db:migrate
+exit
+```
+
+* Запускать каждый раз
+```
+docker-compose up -d
+```
