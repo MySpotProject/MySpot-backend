@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   get "/test", to: "api/test#test"
   
+  get 'omniauth/vkontakte/callback', to: 'omniauth#create'
+
   namespace :api do
     # namespace :profile do
       # post "/upload_avatar", to: "api/profile_controller#upload_avatar"

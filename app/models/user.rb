@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_one_attached :avatar
+  has_many :accounts, dependent: :destroy
 end
