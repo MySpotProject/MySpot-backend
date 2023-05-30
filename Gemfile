@@ -53,5 +53,5 @@ end
 
 
 gem "devise_token_auth", "~> 1.2"
-
+gem 'jbuilder', '~> 2.5'
 gem 'active_storage_validations'

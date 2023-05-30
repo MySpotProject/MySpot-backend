@@ -109,6 +109,9 @@ GEM
     io-console (0.6.0)
     irb (1.6.2)
       reline (>= 0.3.0)
+    jbuilder (2.11.5)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
     jwt (2.7.0)
     loofah (2.19.1)
       crass (~> 1.0.2)
@@ -228,6 +231,7 @@ DEPENDENCIES
   debug
   devise_token_auth (~> 1.2)
   dotenv-rails
+  jbuilder (~> 2.5)
   omniauth
   omniauth-vkontakte
   pg (~> 1.1)
