@@ -16,13 +16,15 @@ Rails.application.routes.draw do
 
   namespace :api do
     post 'profile/upload_avatar', action: :upload_avatar, controller: 'profile'
-    get 'profile', action: 'show', controller: 'profile'
+    post 'profile/delete_avatar', action: :delete_avatar, controller: 'profile'
+    get 'profile', action: 'index', controller: 'profile'
     get '/users', action: :index, controller: 'users'
     get '/user/:id', action: :show, controller: 'users'
     get '/spots', action: :index, controller: 'spots'
     get '/spot/:id', action: :show, controller: 'spots'
     post '/spots/register_new', action: :create, controller: 'spots'
-    
+    post '/spot/:id/like', action: :like, controller: 'spot_ratings'
+    post '/spot/:id/unlike', action: :unlike, controller: 'spot_ratings'
     # namespace :user do
     #   get "/users", to: "api/users_controller#index"
     #   # get '/users', action: :index, controller: 'users'

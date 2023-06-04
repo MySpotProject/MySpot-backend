@@ -9,6 +9,14 @@ module Api
             
             render json: :ok
         end
+        
+        def delete_avatar
+            current_user.avatar.attachment.destroy
+            
+            render json: :ok
+        end
+
+        def index; end
 
         def show
             @user = current_user

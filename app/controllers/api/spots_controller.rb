@@ -2,23 +2,15 @@
 
 module Api
     class SpotsController < ApplicationController
-        before_action :authenticate_user!, only: [:create]
+        # before_action :authenticate_user!, only: [:create]
 
         def index
             @spots = Spot.all
-    
-            # render json: @spots
-
-            # render json: @spots.map { |spot|
-            # spot.as_json.merge({ images: url_for(spot.images) })}
         end
     
         def show 
             @spot = Spot.find(params[:id])
-
-            # respond_to do |format|
-            #     format.json
-            # end
+            # @spot.spot_ratings.average(:rating).to_f.round(2)
         end
     
         def create
@@ -37,7 +29,7 @@ module Api
                 params.require(:spot).permit(
                     :title, :description, 
                     :address, :lng,
-                    :lat, :pools, :ramps, :rail, :ladder, :slide, images: []
+                    :lat,:figures, :pools, :ramps, :rail, :ladder, :slide, images: []
                 )
             end
     end
