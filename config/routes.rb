@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   namespace :api do
     post 'profile/upload_avatar', action: :upload_avatar, controller: 'profile'
     post 'profile/delete_avatar', action: :delete_avatar, controller: 'profile'
-    get 'profile', action: 'index', controller: 'profile'
+    put 'profile/update', action: :update, controller: 'profile'
+    get 'profile', action: :show, controller: 'profile'
     get '/users', action: :index, controller: 'users'
     get '/user/:id', action: :show, controller: 'users'
     get '/spots', action: :index, controller: 'spots'
