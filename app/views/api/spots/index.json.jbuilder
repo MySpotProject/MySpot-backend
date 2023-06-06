@@ -5,6 +5,9 @@ json.array! @spots do |spot|
   json.address spot.address
   json.lng spot.lng
   json.lat spot.lat
+
+  json.coords [spot.lat, spot.lng]
+
   json.pools spot.pools
   json.ramps spot.ramps
   json.rail spot.rail

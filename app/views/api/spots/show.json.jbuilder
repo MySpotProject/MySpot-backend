@@ -2,8 +2,19 @@ json.id @spot.id
 json.title @spot.title
 json.description @spot.description
 json.address @spot.address
-json.lng @spot.lng
+
 json.lat @spot.lat
+json.lng @spot.lng
+
+json.coords [@spot.lat, @spot.lng]
+
+# json.array! do
+# end
+
+# json.lnglat do
+#     json.lat @spot.lat
+#     json.lng @spot.lng
+# end
 json.pools @spot.pools
 json.ramps @spot.ramps
 json.rail @spot.rail

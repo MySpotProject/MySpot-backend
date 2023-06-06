@@ -1,1 +1,1 @@
-json.partial! "/partials/user", user: @spot.author
+json.partial! "/partials/user", user: @user
