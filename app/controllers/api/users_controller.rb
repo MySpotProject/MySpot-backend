@@ -19,7 +19,7 @@ module Api
     end
 
     def show
-      @user = User.find(params[:id])
+      @user = User.find_by(nickname: params[:nickname])
     end
   end
 end
