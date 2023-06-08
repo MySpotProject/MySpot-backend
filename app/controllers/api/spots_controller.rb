@@ -2,7 +2,7 @@
 
 module Api
     class SpotsController < ApplicationController
-        # before_action :authenticate_user!, only: [:create]
+        before_action :authenticate_user!, only: [:create]
 
         def index
             @spots = Spot.all
@@ -18,6 +18,9 @@ module Api
             
             if @spot.save
                 @spot.images.attach(spot_params[:images])
+
+                UserRating.create(user_id: current_user.id, score: 5, reason: "spot submit")
+                
                 render json: @spot, status: :created
             else
                 render json: @spot.errors.full_messages    
