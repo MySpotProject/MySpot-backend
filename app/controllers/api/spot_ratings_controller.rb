@@ -3,7 +3,10 @@ module Api
         before_action :authenticate_user!
 
         def like
-            # byebug
+            if current_user.spot_ratings.find_by(spot_id: params[:id])
+                return render json: :already_liked, status: :bad_request
+            end
+            
             @spot_rating = SpotRating.new(spot_ratings_params.to_h.merge(user_id: current_user.id, spot_id: params[:id]))
 
             if @spot_rating.save
@@ -16,9 +19,15 @@ module Api
         end
 
         def unlike
-            @spot_rating = SpotRating.where(user_id: current_user.id, spot_id: params[:id]).destroy_all
+            if current_user.spot_ratings.find_by(spot_id: params[:id]).nil?
+                return render json: :not_liked, status: :bad_request
+            end
             
-            UserRating.where(user_id: current_user.id).destroy_all
+            @spot_rating = SpotRating.find_by(user_id: current_user.id, spot_id: params[:id]).destroy
+
+            UserRating.create(user_id: current_user.id, score: -3, reason: "spot unliked")
+
+            render json: :unliked
         end
 
         private

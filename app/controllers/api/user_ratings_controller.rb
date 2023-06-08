@@ -1,8 +1,7 @@
 
 module Api
   class UserRatingsController < ApplicationController
-    # before_action :authenticate_user!, only : [:create]
-
+    before_action :authenticate_user!
     # def user_score
     #   # byebug
     #   @user_rating = UserRating.new(user_rating_params.to_h.merge(user_id: current_user.id))
@@ -14,12 +13,12 @@ module Api
     #   end
     # end
   
-    def show
-      @user_ratings = UserRating.all
-    end
+    # def show
+    #   @user_ratings = UserRating.all
+    # end
     
     def index
-      @user_ratings = UserRating.where(user_id: params[:user_id])
+      @user_ratings = UserRating.where(user_id: current_user.id)
     end
     
     private
