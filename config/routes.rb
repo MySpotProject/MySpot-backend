@@ -1,24 +1,6 @@
 Rails.application.routes.draw do
-  get 'news/create'
-  get 'news/show'
-  get 'news/index'
-  get 'user_ratings/create'
-  get 'user_ratings/show'
-  get 'user_ratings/index'
-  get 'tricks/create'
-  get 'tricks/show'
-  get 'tricks/index'
-  # get 'users/new'
-  # get 'users/create'
-  # get 'users/update'
-  # get 'users/destroy'
-  # get 'users/index'
-  # get 'users/show'
   mount_devise_token_auth_for 'User', at: 'auth'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  
   get "/test", to: "api/test#test"
   
   get 'omniauth/vkontakte/callback', to: 'omniauth#create'
@@ -29,6 +11,8 @@ Rails.application.routes.draw do
     post 'news/create_new', action: :create, controller: 'news'
     get 'news', action: :show, controller: 'news'
     get 'news/:id', action: :index, controller: 'news'
+    post 'spot/:id/post_comment', action: :create, controller: 'comments'
+    delete 'spot/:id/delete_comment', action: :destroy, controller: 'comments'
     get 'user/score', action: :index, controller: 'user_ratings'
     post 'profile/delete_avatar', action: :delete_avatar, controller: 'profile'
     post 'tricks/create_new', action: :create, controller: 'tricks'

@@ -8,13 +8,6 @@ json.lng @spot.lng
 
 json.coords [@spot.lat, @spot.lng]
 
-# json.array! do
-# end
-
-# json.lnglat do
-#     json.lat @spot.lat
-#     json.lng @spot.lng
-# end
 json.pools @spot.pools
 json.ramps @spot.ramps
 json.rail @spot.rail
@@ -22,6 +15,10 @@ json.ladder @spot.ladder
 json.slide @spot.slide
 
 json.rating @spot.spot_ratings
+
+json.comments @spot.comments do |comment|
+    json.partial! "/partials/comment", comment: comment
+end
 
 json.rating_avg @spot.spot_ratings.average(:rating).to_f.round(2)
 

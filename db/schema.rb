@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_004637) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_143026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_004637) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "spot_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_comments_on_spot_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "news", force: :cascade do |t|
@@ -149,6 +159,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_004637) do
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "vk"
+    t.string "tg"
+    t.string "mail"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -158,6 +171,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_004637) do
   add_foreign_key "accounts", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "spots"
+  add_foreign_key "comments", "users"
   add_foreign_key "spot_ratings", "spots"
   add_foreign_key "spot_ratings", "users"
   add_foreign_key "spots", "users", column: "author_id"

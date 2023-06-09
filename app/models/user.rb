@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :accounts, dependent: :destroy
   has_many :spot_ratings
   has_many :user_ratings
+  has_many :comments
 
   validates :avatar, content_type: ['image/png', 'image/jpeg'], size: { between: 1.kilobyte..5.megabytes , message: 'is not given between size' }
 end
