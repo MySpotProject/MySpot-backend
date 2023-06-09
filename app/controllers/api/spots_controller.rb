@@ -19,7 +19,7 @@ module Api
             if @spot.save
                 @spot.images.attach(spot_params[:images])
 
-                UserRating.create(user_id: current_user.id, score: 5, reason: "spot submit")
+                UserRating.create(user_id: current_user.id, score: 25, reason: "spot submit")
                 
                 render json: @spot, status: :created
             else

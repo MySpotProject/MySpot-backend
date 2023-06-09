@@ -10,7 +10,7 @@ module Api
             @spot_rating = SpotRating.new(spot_ratings_params.to_h.merge(user_id: current_user.id, spot_id: params[:id]))
 
             if @spot_rating.save
-                UserRating.create(user_id: current_user.id, score: 3, reason: "spot liked")
+                UserRating.create(user_id: current_user.id, score: 5, reason: "spot liked")
 
                 render json: @spot_rating, status: :created
             else
@@ -25,7 +25,7 @@ module Api
             
             @spot_rating = SpotRating.find_by(user_id: current_user.id, spot_id: params[:id]).destroy
 
-            UserRating.create(user_id: current_user.id, score: -3, reason: "spot unliked")
+            UserRating.create(user_id: current_user.id, score: -5, reason: "spot unliked")
 
             render json: :unliked
         end
