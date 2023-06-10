@@ -11,8 +11,10 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  config.hosts << "konstabx.beget.tech"
+
   Rails.application.routes.default_url_options = {
-    host: 'http://localhost:3001'
+    host: 'https://konstabx.beget.tech'
   }
 
   # Show full error reports.
