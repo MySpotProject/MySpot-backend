@@ -12,7 +12,11 @@ module Api
             @spot = Spot.find(params[:id])
             # @spot.spot_ratings.average(:rating).to_f.round(2)
         end
-    
+        
+        def top_10
+            @spots = Spot.joins(:spot_ratings).group("spots.id").order("avg(spot_ratings.rating) desc")
+        end
+
         def create
             @spot = Spot.new(spot_params.merge(author_id: current_user.id))
             
