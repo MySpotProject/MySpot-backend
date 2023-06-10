@@ -14,6 +14,10 @@ module Api
     def destroy
     end
 
+    def top_10
+      @user_ratings = UserRating.order(score: :desc).limit(10)
+    end
+
     def index
       @users = User.all
     end

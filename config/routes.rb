@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     post 'spot/:id/post_comment', action: :create, controller: 'comments'
     delete 'spot/:id/delete_comment', action: :destroy, controller: 'comments'
     get 'user/score', action: :index, controller: 'user_ratings'
+    get 'users/top10', action: :top_10, controller: 'users'
     post 'profile/delete_avatar', action: :delete_avatar, controller: 'profile'
     post 'tricks/create_new', action: :create, controller: 'tricks'
     get 'tricks', action: :index, controller: 'tricks'

@@ -10,7 +10,6 @@ class Spot < ApplicationRecord
     validates :description, length: { maximum: 250 }
     validates :lng, :lat, :address, presence: true
     validates :pools, :ramps, :rail, :ladder, :slide, inclusion: [true, false]
-    # validates :pools, :ramps, :rail, :ladder, :slide, exclusion: [nil]
 
     validates :images, attached: true, limit: { min: 1, max: 3 }, content_type: ['image/png', 'image/jpeg'], size: { between: 1.kilobyte..5.megabytes , message: 'is not given between size' }
 end

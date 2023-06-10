@@ -24,7 +24,7 @@ module Api
 
         def update
             if current_user.update(current_user_params)
-                
+                # byebug
                 render json: :updated
             else
                 render json: current_user.errors.full_messages
@@ -38,7 +38,7 @@ module Api
         private
 
         def current_user_params
-            params.require(:user).permit(:email, :name, :nickname, :password, :password_confirmation)
+            params.require(:user).permit(:email, :name, :nickname, :vk, :tg, :mail)
         end
     end
 end
