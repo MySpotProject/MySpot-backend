@@ -1,6 +1,6 @@
 default: &default
   adapter: <%= ENV["DB_ADAPTER"] %>
-  encoding: unicode
+  encoding: utf8
   host: <%= ENV["DB_HOST"] %>
   username: <%= ENV["DB_USER"] %>
   password: <%= ENV["DB_PASSWORD"] %>
