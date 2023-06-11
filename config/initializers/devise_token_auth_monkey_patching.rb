@@ -17,24 +17,19 @@ Rails.configuration.to_prepare do
           yield @resource if block_given?
   
           if require_client_password_reset_token?
-            redirect_to DeviseTokenAuth::Url.generate(@redirect_url,
-                                                      reset_password_token: resource_params[:reset_password_token],
-                                                      allow_other_host: true
-            )
+            redirect_to DeviseTokenAuth::Url.generate(@redirect_url, reset_password_token: resource_params[:reset_password_token], allow_other_host: true)
           else
             if DeviseTokenAuth.cookie_enabled
               set_token_in_cookie(@resource, token)
             end
   
             redirect_header_options = { reset_password: true }
-            redirect_headers = build_redirect_headers(token.token,
-                                                      token.client,
-                                                      redirect_header_options)
-            redirect_to(@resource.build_auth_url(@redirect_url,
-                                                 redirect_headers))
+            redirect_headers = build_redirect_headers(token.token, token.client, redirect_header_options)
+            redirect_to(@resource.build_auth_url(@redirect_url, redirect_headers))
           end
         else
           render_edit_error
         end
       end
     end
+end
