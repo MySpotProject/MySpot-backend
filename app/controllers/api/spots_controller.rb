@@ -10,16 +10,14 @@ module Api
     
         def show 
             @spot = Spot.find(params[:id])
-            # @spot.spot_ratings.average(:rating).to_f.round(2)
         end
         
         def top_10
-            @spots = Spot.joins(:spot_ratings).group("spots.id").order("avg(spot_ratings.rating) desc")
+            @spots = Spot.where(published: true).joins(:spot_ratings).group("spots.id").order("avg(spot_ratings.rating) desc")
         end
 
         def create
-            @spot = Spot.new(spot_params.merge(author_id: current_user.id))
-            
+            @spot = Spot.new(spot_params.to_h.merge(author_id: current_user.id, published: false))
             if @spot.save
                 @spot.images.attach(spot_params[:images])
 

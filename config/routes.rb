@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     post 'spots/register_new', action: :create, controller: 'spots'
     post 'spot/:id/like', action: :like, controller: 'spot_ratings'
     post 'spot/:id/unlike', action: :unlike, controller: 'spot_ratings'
+    # post 'api/v1/forgot_password' => "api/v1/passwords#forgot"
+    # post 'api/v1/reset_password' => "api/v1/passwords#reset"
+    
     # namespace :user do
     #   get "/users", to: "api/users_controller#index"
     #   # get '/users', action: :index, controller: 'users'

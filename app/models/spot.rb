@@ -4,8 +4,6 @@ class Spot < ApplicationRecord
     has_many :comments
 
     belongs_to :author, class_name: "User"
-    
-    # validates :title, presence: true, length: { maximum: 10}
 
     validates :description, length: { maximum: 250 }
     validates :lng, :lat, :address, presence: true
