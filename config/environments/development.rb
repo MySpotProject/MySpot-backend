@@ -23,35 +23,21 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
 
-  # config.action_mailer.default_url_options = { :host => 'localhost:3001' }
-  # config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address: "smtp.gmail.com",
-  #   port: 587,
-  #   domain: ENV["GMAIL_DOMAIN"],
-  #   authentication: "plain",
-  #   enable_starttls_auto: true,
-  #   user_name: ENV["GMAIL_USERNAME"],
-  #   password: ENV["GMAIL_PASSWORD"]
-  # }
-
-  config.action_mailer.perform_deliveries = true
+  # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.delivery_method = :smtp
-  # host = 'localhost:3001'
-  config.action_mailer.default_url_options = { :host => 'localhost', :port => 3001 }
+  config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = { host: ENV["HOST"] }
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "smtp.yandex.ru",
-    :domain => "yandex.ru",
-    :port => 465,
-    :user_name => ENV["GMAIL_ACCOUNT"],
-    :password => ENV["GMAIL_PASSWORD"],
-    :authentication => "plain",
-    :enable_starttls_auto => true,
-    :tls => true
+    :tls => true,
+    address: 'smtp.yandex.ru',
+    port: 465,
+    domain: 'yandex.ru',
+    authentication: 'plain',
+    user_name: ENV["SMTP_USER"],
+    password: ENV["SMTP_PASSWORD"]
   }
 
 
