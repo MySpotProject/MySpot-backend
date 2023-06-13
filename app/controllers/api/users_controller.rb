@@ -15,7 +15,7 @@ module Api
     end
 
     def top_10
-      @user_ratings = UserRating.order(score: :desc).limit(10)
+      @users =User.joins(:user_ratings).group("users.id").order("sum(user_ratings.score) desc").limit(10)
     end
 
     def index

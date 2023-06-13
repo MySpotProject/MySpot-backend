@@ -13,10 +13,12 @@ module Api
     #   end
     # end
   
-    # def show
-    #   @user_ratings = UserRating.all
-    # end
+    def show
+      @user_ratings = UserRating.all
+    end
     
+    
+
     def index
       @user_ratings = UserRating.where(user_id: current_user.id)
     end

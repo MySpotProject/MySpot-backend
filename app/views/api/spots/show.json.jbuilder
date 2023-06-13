@@ -14,7 +14,11 @@ json.rail @spot.rail
 json.ladder @spot.ladder
 json.slide @spot.slide
 
-json.rating @spot.spot_ratings
+json.rating @spot.spot_ratings do |spot_rating|
+    json.user_id spot_rating.user_id
+    json.spot_id spot_rating.spot_id
+    json.rating spot_rating.rating
+end
 
 json.comments @spot.comments do |comment|
     json.partial! "/partials/comment", comment: comment
