@@ -1,19 +1,15 @@
 default: &default
-  adapter: <%= ENV["DB_ADAPTER"] %>
-  encoding: utf8
-  host: <%= ENV["DB_HOST"] %>
-  username: <%= ENV["DB_USER"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
+  adapter: postgresql
+  encoding: unicode
+  url: <%= ENV["DB_URL"] %>
   pool: 5
 
 development:
   <<: *default
-  database: <%= ENV["DB_NAME"] %>
 
 test:
   <<: *default
-  database: db_test
+  database: spot_test
 
 production:
   <<: *default
-  database: <%= ENV["DB_NAME"] %>
