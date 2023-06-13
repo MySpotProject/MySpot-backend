@@ -14,7 +14,7 @@ Rails.application.configure do
   config.hosts << "konstabx.beget.tech"
 
   Rails.application.routes.default_url_options = {
-    host: 'https://konstabx.beget.tech'
+    host: ENV["HOST"]
   }
 
   # Show full error reports.
