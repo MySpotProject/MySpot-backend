@@ -2,7 +2,7 @@
 
 DeviseTokenAuth.setup do |config|
   config.require_client_password_reset_token = true
-  config.redirect_whitelist = ["https://my.site/change_password"]
+  config.redirect_whitelist = [ENV["CLIENT_CHANGE_PASSWORD_URL"]]
 
   # By default the authorization headers will change after each request. The
   # client is responsible for keeping track of the changing tokens. Change
