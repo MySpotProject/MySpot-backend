@@ -12,10 +12,10 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
-  config.hosts << "konstabx.beget.tech"
+  config.hosts << ENV["HOST"]
 
   Rails.application.routes.default_url_options = {
-    host: 'https://konstabx.beget.tech'
+    host: ENV["HOST"]
   }
 
   # Full error reports are disabled and caching is turned on.
