@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     post 'spot/:id/post_comment', action: :create, controller: 'comments'
     delete 'spot/:id/delete_comment', action: :destroy, controller: 'comments'
     get 'user/score', action: :index, controller: 'user_ratings'
+    get 'spots/top10', action: :top_10, controller: 'spots'
     get 'users/top10', action: :top_10, controller: 'users'
     post 'profile/delete_avatar', action: :delete_avatar, controller: 'profile'
     post 'tricks/create_new', action: :create, controller: 'tricks'
@@ -28,6 +29,9 @@ Rails.application.routes.draw do
     post 'spots/register_new', action: :create, controller: 'spots'
     post 'spot/:id/like', action: :like, controller: 'spot_ratings'
     post 'spot/:id/unlike', action: :unlike, controller: 'spot_ratings'
+    # post 'api/v1/forgot_password' => "api/v1/passwords#forgot"
+    # post 'api/v1/reset_password' => "api/v1/passwords#reset"
+    
     # namespace :user do
     #   get "/users", to: "api/users_controller#index"
     #   # get '/users', action: :index, controller: 'users'

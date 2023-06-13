@@ -23,6 +23,38 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
 
+  # config.action_mailer.default_url_options = { :host => 'localhost:3001' }
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.gmail.com",
+  #   port: 587,
+  #   domain: ENV["GMAIL_DOMAIN"],
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name: ENV["GMAIL_USERNAME"],
+  #   password: ENV["GMAIL_PASSWORD"]
+  # }
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :smtp
+  # host = 'localhost:3001'
+  config.action_mailer.default_url_options = { :host => 'localhost', :port => 3001 }
+
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.yandex.ru",
+    :domain => "yandex.ru",
+    :port => 465,
+    :user_name => ENV["GMAIL_ACCOUNT"],
+    :password => ENV["GMAIL_PASSWORD"],
+    :authentication => "plain",
+    :enable_starttls_auto => true,
+    :tls => true
+  }
+
+
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?
