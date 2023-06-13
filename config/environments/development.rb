@@ -11,10 +11,10 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-  config.hosts << "konstabx.beget.tech"
+  config.hosts << ENV["DOMAIN"]
 
   Rails.application.routes.default_url_options = {
-    host: 'https://konstabx.beget.tech'
+    host: ENV["HOST"]
   }
 
   # Show full error reports.
@@ -22,6 +22,23 @@ Rails.application.configure do
 
   # Enable server timing
   config.server_timing = true
+
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.perform_caching = false
+
+  config.action_mailer.default_url_options = { host: ENV["HOST"] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :tls => true,
+    address: 'smtp.yandex.ru',
+    port: 465,
+    domain: 'yandex.ru',
+    authentication: 'plain',
+    user_name: ENV["SMTP_USER"],
+    password: ENV["SMTP_PASSWORD"]
+  }
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
