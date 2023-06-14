@@ -16,7 +16,7 @@ json.array! @spots do |spot|
 
   # json.ratings spot.spot_ratings
 
-  # json.ratings_avg spot.spot_ratings.average(:rating).to_f.round(2)
+  json.ratings_avg spot.spot_ratings.average(:rating).to_f.round(2)
 
   # json.images spot.images
   # json.images spot.images do |image|

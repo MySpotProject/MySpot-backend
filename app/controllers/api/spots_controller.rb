@@ -5,7 +5,7 @@ module Api
         before_action :authenticate_user!, only: [:create]
 
         def index
-            @spots = Spot.all
+            @spots = Spot.all.where(published: true)
         end
     
         def show 
