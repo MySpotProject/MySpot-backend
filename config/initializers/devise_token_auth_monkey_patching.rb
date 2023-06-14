@@ -1,31 +1,5 @@
 Rails.configuration.to_prepare do
   DeviseTokenAuth::PasswordsController.class_eval do
-    def create
-      return render_create_error_missing_email unless resource_params[:email]
-
-      @email = get_case_insensitive_field_from_resource_params(:email)
-      @resource = find_resource(:uid, @email)
-
-      if @resource
-        yield @resource if block_given?
-        @resource.send_reset_password_instructions(
-          email: @email,
-          provider: 'email',
-          redirect_url: @redirect_url,
-          client_config: params[:config_name],
-          from: ENV["EMAIL_FROM"]
-        )
-
-        if @resource.errors.empty?
-          return render_create_success
-        else
-          render_create_error @resource.errors
-        end
-      else
-        render_not_found_error
-      end
-    end
-
     def edit
       # if a user is not found, return nil
       @resource = resource_class.with_reset_password_token(resource_params[:reset_password_token])
@@ -85,24 +59,6 @@ Rails.configuration.to_prepare do
       else
         raise ActionController::RoutingError, 'Not Found'
       end
-    end
-
-    def create
-      return render_create_error_missing_email if resource_params[:email].blank?
-
-      @email = get_case_insensitive_field_from_resource_params(:email)
-
-      @resource = resource_class.dta_find_by(uid: @email, provider: provider)
-
-      return render_not_found_error unless @resource
-
-      @resource.send_confirmation_instructions({
-        redirect_url: redirect_url,
-        client_config: resource_params[:config_name],
-        from: ENV["EMAIL_FROM"]
-      })
-
-      return render_create_success
     end
   end
 end
