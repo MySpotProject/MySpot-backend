@@ -2,20 +2,10 @@
 
 module Api
   class UsersController < ApplicationController
-    def new
-    end
-
-    def create
-    end
-
-    def update
-    end
-
-    def destroy
-    end
+    before_action :authenticate_user!, only: [:top_10]
 
     def top_10
-      @users =User.joins(:user_ratings).group("users.id").order("sum(user_ratings.score) desc").limit(10)
+      @users = User.joins(:user_ratings).group("users.id").order("sum(user_ratings.score) desc").limit(10)
     end
 
     def index
