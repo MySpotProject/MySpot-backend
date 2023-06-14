@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 DeviseTokenAuth.setup do |config|
+  config.require_client_password_reset_token = true
+  config.redirect_whitelist = [
+    ENV["CLIENT_CHANGE_PASSWORD_URL"],
+    ENV["CLIENT_CONFIRM_URL"]
+  ]
+
   # By default the authorization headers will change after each request. The
   # client is responsible for keeping track of the changing tokens. Change
   # this to false to prevent the Authorization header from changing after
@@ -59,5 +65,9 @@ DeviseTokenAuth.setup do |config|
   # By default DeviseTokenAuth will not send confirmation email, even when including
   # devise confirmable module. If you want to use devise confirmable module and
   # send email, set it to true. (This is a setting for compatibility)
-  # config.send_confirmation_email = true
+  config.send_confirmation_email = true
+end
+
+Devise.setup do |config|
+  config.mailer_sender = ENV["EMAIL_FROM"]
 end
