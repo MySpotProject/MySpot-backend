@@ -2,7 +2,7 @@
 
 module Api
     class SpotsController < ApplicationController
-        before_action :authenticate_user!, only: [:create]
+        before_action :authenticate_user!, only: [:create, :top_10]
 
         def index
             @spots = Spot.all.where(published: true)

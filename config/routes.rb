@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     get 'tricks/:slug', action: :show, controller: 'tricks'
     put 'profile/update', action: :update, controller: 'profile'
     get 'profile', action: :show, controller: 'profile'
-    get 'users', action: :index, controller: 'users'
+    get 'user/:id', action: :index, controller: 'users'
     get 'user/:nickname', action: :show, controller: 'users'
     get 'spots', action: :index, controller: 'spots'
     get 'spot/:id', action: :show, controller: 'spots'

@@ -7,8 +7,6 @@ module Api
     def create
       @trick = Trick.new(trick_params)
       if @trick.save
-        # byebug
-        # @trick.images.attach(trick_params[:images])
         render json: @trick, status: :created
       else
         render json: @trick.errors.full_messages

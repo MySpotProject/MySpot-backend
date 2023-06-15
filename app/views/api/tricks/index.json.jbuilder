@@ -1,5 +1,3 @@
-# json.partial! "/partials/trick", trick: @trick
-
 json.array! @tricks do |trick|
     json.id trick.id
     json.title trick.title
