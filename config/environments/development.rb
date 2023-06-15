@@ -33,13 +33,12 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     :tls => true,
-    address: 'smtp.mail.ru',
+    address: 'smtp.yandex.ru',
     port: 465,
-    domain: 'my-spot.ru',
+    domain: 'yandex.ru',
     authentication: 'plain',
     user_name: ENV["SMTP_USER"],
-    password: ENV["SMTP_PASSWORD"],
-    enable_starttls_auto: true
+    password: ENV["SMTP_PASSWORD"]
   }
 
   # Enable/disable caching. By default caching is disabled.
