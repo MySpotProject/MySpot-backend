@@ -19,8 +19,6 @@ module Api
         def create
             @spot = Spot.new(spot_params.to_h.merge(author_id: current_user.id, published: false))
             if @spot.save
-                @spot.images.attach(spot_params[:images])
-
                 UserRating.create(user_id: current_user.id, score: 25, reason: "spot submit")
                 
                 render json: @spot, status: :created
