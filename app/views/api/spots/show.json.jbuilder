@@ -11,6 +11,8 @@ json.rail @spot.rail
 json.ladder @spot.ladder
 json.slide @spot.slide
 
+json.rating @spot.spot_ratings.find_by(user_id: @current_user&.id)&.rating
+
 json.comments @spot.comments do |comment|
     json.partial! "/partials/comment", comment: comment
 end
