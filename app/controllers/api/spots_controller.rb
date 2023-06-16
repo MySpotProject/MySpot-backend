@@ -8,7 +8,8 @@ module Api
             @spots = Spot.all.where(published: true)
         end
     
-        def show 
+        def show
+            @current_user = current_user
             @spot = Spot.find(params[:id])
         end
         
